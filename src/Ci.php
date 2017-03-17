@@ -4,33 +4,33 @@ namespace juanisorondo\ValidadorUruguay;
 
 class Ci {
 
-    const PUNTOS_GUION = '(\d\.)?\d{3}\.\d{3}-\d';
-    const GUION = '\d{6,7}-\d';
-    const NUMEROS = '\d{7,8}';
+    const DOTS_HYPHEN = '(\d\.)?\d{3}\.\d{3}-\d';
+    const HYPHEN = '\d{6,7}-\d';
+    const NUMBERS = '\d{7,8}';
 
-    public $formato;
+    public $format;
 
-    public function __construct($formato = null) {
-        if (!$formato) {
-            $this->formato = '(' . self::PUNTOS_GUION . ')|(' . self::GUION . ')|(' . self::NUMEROS . ')';
+    public function __construct($format = null) {
+        if (!$format) {
+            $this->format = '(' . self::DOTS_HYPHEN . ')|(' . self::HYPHEN . ')|(' . self::NUMBERS . ')';
         }
-        $this->formato = $formato;
+        $this->format = $format;
     }
 
-    public function validar($ci) {
-        if (!preg_match("/$this->formato/", $ci)) {
+    public function validate($ci) {
+        if (!preg_match("/$this->format/", $ci)) {
             return false;
         }
 
-        $numero = str_replace(['.', '-'], '', $ci);
-        $numero = strlen($numero) == 7 ? "0$numero" : $numero;
+        $numbers = str_replace(['.', '-'], '', $ci);
+        $numbers = strlen($numbers) == 7 ? "0$numbers" : $numbers;
         
-        $split = str_split($numero);
-        $coeficientes = [2, 9, 8, 7, 6, 3, 4, 1];
+        $split = str_split($numbers);
+        $coeffs = [2, 9, 8, 7, 6, 3, 4, 1];
         
-        $prod = array_map(function($int, $coef) {
-            return $int * $coef;
-        }, $split, $coeficientes);
+        $prod = array_map(function($int, $coeff) {
+            return $int * $coeff;
+        }, $split, $coeffs);
 
         return array_sum($prod) % 10 == 0;
     }

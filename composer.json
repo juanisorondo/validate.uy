@@ -1,6 +1,6 @@
 {
-    "name": "juanisorondo/validador-uruguay",
-    "description": "Validador de documentos y datos generados en formatos típicos de Uruguay",
+    "name": "juanisorondo/validate.uy",
+    "description": "Library for validating uruguayan formats",
     "type": "library",
     "require": {
         "php": ">=5.6"
