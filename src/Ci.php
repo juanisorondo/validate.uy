@@ -11,10 +11,11 @@ class Ci {
     public $format;
 
     public function __construct($format = null) {
-        if (!$format) {
+        if (empty($format)) {
             $this->format = '(' . self::DOTS_HYPHEN . ')|(' . self::HYPHEN . ')|(' . self::NUMBERS . ')';
+        } else {
+            $this->format = $format;
         }
-        $this->format = $format;
     }
 
     public function validate($ci) {
@@ -23,11 +24,14 @@ class Ci {
         }
 
         $numbers = str_replace(['.', '-'], '', $ci);
+        if (strlen($numbers) > 8) {
+            return false;
+        }
         $numbers = strlen($numbers) == 7 ? "0$numbers" : $numbers;
-        
+
         $split = str_split($numbers);
         $coeffs = [2, 9, 8, 7, 6, 3, 4, 1];
-        
+
         $prod = array_map(function($int, $coeff) {
             return $int * $coeff;
         }, $split, $coeffs);
