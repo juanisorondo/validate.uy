@@ -4,39 +4,24 @@ namespace juanisorondo\ValidadorUruguay;
 
 class Ci {
 
-    const DOTS_HYPHEN = '(\d\.)?\d{3}\.\d{3}-\d';
-    const HYPHEN = '\d{6,7}-\d';
-    const NUMBERS = '\d{7,8}';
-
-    public $format;
-
-    public function __construct($format = null) {
-        if (empty($format)) {
-            $this->format = '(' . self::DOTS_HYPHEN . ')|(' . self::HYPHEN . ')|(' . self::NUMBERS . ')';
-        } else {
-            $this->format = $format;
-        }
+    public function validate( string $ci ) : bool
+    {
+        $ci = preg_replace( '/\D/', '', $ci );
+        $validationDigit = $ci[-1];
+        $ci = preg_replace('/[0-9]$/', '', $ci );
+        return $validationDigit == $this->validation_digit( $ci );
     }
 
-    public function validate($ci) {
-        if (!preg_match("/$this->format/", $ci)) {
-            return false;
+    public function validation_digit( string $ci ) : int
+    {
+        $ci = str_pad( $ci, 7, '0', STR_PAD_LEFT );
+        $a = 0;
+        $baseNumber = "2987634";
+        for ( $i = 0; $i < 7; $i++ ) {
+            $baseDigit = $baseNumber[ $i ];
+            $ciDigit = $ci[ $i ];
+            $a += ( intval($baseDigit ) * intval( $ciDigit ) ) % 10;
         }
-
-        $numbers = str_replace(['.', '-'], '', $ci);
-        if (strlen($numbers) > 8) {
-            return false;
-        }
-        $numbers = strlen($numbers) == 7 ? "0$numbers" : $numbers;
-
-        $split = str_split($numbers);
-        $coeffs = [2, 9, 8, 7, 6, 3, 4, 1];
-
-        $prod = array_map(function($int, $coeff) {
-            return $int * $coeff;
-        }, $split, $coeffs);
-
-        return array_sum($prod) % 10 == 0;
+        return $a % 10 == 0 ? 0 : 10 - $a % 10;
     }
-
 }
