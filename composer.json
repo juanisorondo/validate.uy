@@ -13,6 +13,11 @@
     ],
     "minimum-stability": "stable",
     "autoload": {
-        "files": ["src/Ci.php"]
+        "psr-4": {
+            "juanisorondo\\ValidadorUruguay\\": "src/"
+        }
+    },
+    "require-dev": {
+        "codeception/base": "^3.1"
     }
 }
