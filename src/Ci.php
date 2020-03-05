@@ -40,5 +40,4 @@ class Ci
 
         return array_sum($prod) % 10 == 0;
     }
-
 }

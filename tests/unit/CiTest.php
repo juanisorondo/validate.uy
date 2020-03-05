@@ -3,13 +3,8 @@
 use Codeception\Test\Unit;
 use juanisorondo\ValidadorUruguay\Ci;
 
-class CiCest extends Unit
+class CiTest extends Unit
 {
-    /**
-     * @var UnitTester
-     */
-    protected $tester;
-
     public function testDotsHyphen()
     {
         $validator = new Ci(Ci::DOTS_HYPHEN);
