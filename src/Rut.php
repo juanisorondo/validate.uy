@@ -9,24 +9,15 @@ class Rut
         if (strlen($rut) != 12 || !is_numeric($rut)) {
             return false;
         }
-        $dc = substr($rut, 11, 1);
-        $rut = substr($rut, 0, 11);
 
-        $total = 0;
-        $factor = 2;
-        for ($i = 10; $i >= 0; $i--) {
-            $total += ($factor * substr($rut, $i, 1));
-            $factor = ($factor == 9) ? 2 : $factor + 1;
-        }
+        $tmp = array_map('intval', str_split($rut));
 
-        $dv = 11 - ($total % 11);
+        $tmp = array_map(function ($x, $y) {
+            return $x * $y;
+        }, array_slice($tmp, 0, 11), [4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]);
 
-        if ($dv == 11) {
-            $dv = 0;
-        } elseif ($dv == 10) {
-            $dv = 1;
-        }
+        $tmp = array_sum($tmp);
 
-        return $dv == $dc;
+        return $rut[11] == 11 - $tmp % 11;
     }
 }
