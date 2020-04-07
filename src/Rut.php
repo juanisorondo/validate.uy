@@ -4,11 +4,13 @@ namespace juanisorondo\ValidadorUruguay;
 
 class Rut
 {
-    public function validate($rut)
+    public static function validate($rut)
     {
-        if (strlen($rut) != 12 || !is_numeric($rut)) {
+        if (strlen($rut) > 12 || !is_numeric($rut)) {
             return false;
         }
+        $rut = strval($rut);
+        $rut = str_pad($rut,12,'0',STR_PAD_LEFT);
 
         $tmp = array_map('intval', str_split($rut));
 
