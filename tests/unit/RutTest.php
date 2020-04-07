@@ -19,7 +19,7 @@ class RutTest extends Unit
             ['210475730011', true],
             ['310475730011', false],
             ['2104757300110', false],
-            ['20064100019', true],// 11 digitos
+            ['020064100019', true],
             [217832560011, true],
         ];
     }
