@@ -7,40 +7,43 @@ class CiTest extends Unit
 {
     public function testDotsHyphen()
     {
-        $validator = new Ci(Ci::DOTS_HYPHEN);
-        $this->assertInstanceOf(Ci::class, $validator);
+        $this->assertTrue(Ci::validate('1.212.121-2',Ci::DOTS_HYPHEN));
+        $this->assertTrue(Ci::validate('738.753-8',Ci::DOTS_HYPHEN));
+        $this->assertTrue(Ci::validate('0.738.753-8',Ci::DOTS_HYPHEN));
 
-        $this->assertTrue($validator->validate('1.212.121-2'));
-        $this->assertTrue($validator->validate('738.753-8'));
-        $this->assertTrue($validator->validate('0.738.753-8'));
-
-        $this->assertFalse($validator->validate('1.212.121-1'));
-        $this->assertFalse($validator->validate('12.121.212-2'));
+        $this->assertFalse(Ci::validate('1.212.121-1',Ci::DOTS_HYPHEN));
+        $this->assertFalse(Ci::validate('12.121.212-2',Ci::DOTS_HYPHEN));
     }
 
     public function testHyphen()
     {
-        $validator = new Ci(Ci::HYPHEN);
-        $this->assertInstanceOf(Ci::class, $validator);
+        $this->assertTrue(Ci::validate('1212121-2',Ci::HYPHEN));
+        $this->assertTrue(Ci::validate('738753-8',Ci::HYPHEN));
+        $this->assertTrue(Ci::validate('0738753-8',Ci::HYPHEN));
 
-        $this->assertTrue($validator->validate('1212121-2'));
-        $this->assertTrue($validator->validate('738753-8'));
-        $this->assertTrue($validator->validate('0738753-8'));
-
-        $this->assertFalse($validator->validate('1212121-1'));
-        $this->assertFalse($validator->validate('12121212-2'));
+        $this->assertFalse(Ci::validate('1212121-1',Ci::HYPHEN));
+        $this->assertFalse(Ci::validate('12121212-2',Ci::HYPHEN));
     }
 
     public function testNumbers()
     {
-        $validator = new Ci(Ci::NUMBERS);
-        $this->assertInstanceOf(Ci::class, $validator);
+        $this->assertTrue(Ci::validate('12121212',Ci::NUMBERS));
+        $this->assertTrue(Ci::validate('7387538',Ci::NUMBERS));
+        $this->assertTrue(Ci::validate('07387538',Ci::NUMBERS));
 
-        $this->assertTrue($validator->validate('12121212'));
-        $this->assertTrue($validator->validate('7387538'));
-        $this->assertTrue($validator->validate('07387538'));
+        $this->assertFalse(Ci::validate('12121211',Ci::NUMBERS));
+        $this->assertFalse(Ci::validate('121212122',Ci::NUMBERS));
+    }
 
-        $this->assertFalse($validator->validate('12121211'));
-        $this->assertFalse($validator->validate('121212122'));
+    public function testAllWithoutFormat()
+    {
+        $this->assertTrue(Ci::validate('1.212.121-2'));
+        $this->assertFalse(Ci::validate('1.212.121-1'));
+
+        $this->assertTrue(Ci::validate('0738753-8'));
+        $this->assertFalse(Ci::validate('1212121-1'));
+
+        $this->assertTrue(Ci::validate('07387538'));
+        $this->assertFalse(Ci::validate('12121211'));
     }
 }

@@ -10,18 +10,12 @@ class Ci
 
     public $format;
 
-    public function __construct($format = null)
+    public static function validate($ci, $format = null)
     {
-        if (empty($format)) {
+        if(!$format){
             $format = '(' . self::DOTS_HYPHEN . ')|(' . self::HYPHEN . ')|(' . self::NUMBERS . ')';
         }
-
-        $this->format = $format;
-    }
-
-    public function validate($ci)
-    {
-        if (!preg_match("/$this->format/", $ci)) {
+        if (!preg_match("/$format/", $ci)) {
             return false;
         }
 
