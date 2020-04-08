@@ -7,12 +7,13 @@ class Ci
     const DOTS_HYPHEN = '(\d\.)?\d{3}\.\d{3}-\d';
     const HYPHEN = '\d{6,7}-\d';
     const NUMBERS = '\d{7,8}';
-    
+
     public static function validate($ci, $format = null)
     {
-        if(!$format){
+        if (!$format) {
             $format = '(' . self::DOTS_HYPHEN . ')|(' . self::HYPHEN . ')|(' . self::NUMBERS . ')';
         }
+        
         if (!preg_match("/$format/", $ci)) {
             return false;
         }
