@@ -10,9 +10,7 @@ class RutTest extends Unit
      */
     public function testRuts($rut, $result)
     {
-        $validator = new Rut();
-        $this->assertInstanceOf(Rut::class, $validator);
-        $this->assertEquals($result, $validator->validate($rut));
+        $this->assertEquals($result, Rut::validate($rut));
     }
 
     public function ejemplos()
@@ -21,6 +19,8 @@ class RutTest extends Unit
             ['210475730011', true],
             ['310475730011', false],
             ['2104757300110', false],
+            ['020064100019', true],
+            [217832560011, true],
         ];
     }
 }
