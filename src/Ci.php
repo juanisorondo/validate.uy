@@ -7,9 +7,7 @@ class Ci
     const DOTS_HYPHEN = '(\d\.)?\d{3}\.\d{3}-\d';
     const HYPHEN = '\d{6,7}-\d';
     const NUMBERS = '\d{7,8}';
-
-    public $format;
-
+    
     public static function validate($ci, $format = null)
     {
         if(!$format){
