@@ -8,20 +8,13 @@ class Ci
     const HYPHEN = '\d{6,7}-\d';
     const NUMBERS = '\d{7,8}';
 
-    public $format;
-
-    public function __construct($format = null)
+    public static function validate($ci, $format = null)
     {
-        if (empty($format)) {
+        if (!$format) {
             $format = '(' . self::DOTS_HYPHEN . ')|(' . self::HYPHEN . ')|(' . self::NUMBERS . ')';
         }
-
-        $this->format = $format;
-    }
-
-    public function validate($ci)
-    {
-        if (!preg_match("/$this->format/", $ci)) {
+        
+        if (!preg_match("/$format/", $ci)) {
             return false;
         }
 
