@@ -19,6 +19,12 @@ class Rut
 
         $tmp = array_sum($tmp);
 
-        return $rut[11] == 11 - $tmp % 11;
+        $digito_verificador = 11 - $tmp % 11;
+        if($digito_verificador == 11){
+            $digito_verificador = 0;
+        }elseif($digito_verificador == 10){
+            $digito_verificador = 1;
+        }
+        return $rut[11] == $digito_verificador;
     }
 }
