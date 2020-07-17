@@ -4,9 +4,9 @@ namespace juanisorondo\ValidadorUruguay;
 
 class Ci
 {
-    const DOTS_HYPHEN = '(\d\.)?\d{3}\.\d{3}-\d';
-    const HYPHEN = '\d{6,7}-\d';
-    const NUMBERS = '\d{7,8}';
+    const DOTS_HYPHEN = '(\d\.)?\d{3}\.\d{1,3}-\d';
+    const HYPHEN = '\d{5,7}-\d';
+    const NUMBERS = '\d{5,8}';
 
     public static function validate($ci, $format = null)
     {
