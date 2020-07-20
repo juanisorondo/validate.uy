@@ -4,7 +4,7 @@ namespace juanisorondo\ValidadorUruguay;
 
 class Ci
 {
-    const DOTS_HYPHEN = '(\d\.)?\d{3}\.\d{1,3}-\d';
+    const DOTS_HYPHEN = '(\d\.)?\d{1,3}\.\d{3}-\d';
     const HYPHEN = '\d{5,7}-\d';
     const NUMBERS = '\d{5,8}';
 
