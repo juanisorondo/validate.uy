@@ -43,7 +43,7 @@ class CiTest extends Unit
 
     public function testAllWithoutFormat()
     {
-       $this->assertTrue(Ci::validate('62.805-0'));
+        $this->assertTrue(Ci::validate('62.805-0'));
         $this->assertTrue(Ci::validate('1.212.121-2'));
         $this->assertFalse(Ci::validate('1.212.121-1'));
         $this->assertFalse(Ci::validate('62.805-3'));
