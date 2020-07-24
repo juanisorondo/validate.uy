@@ -4,11 +4,11 @@ namespace juanisorondo\ValidadorUruguay;
 
 class Ci
 {
-    const DOTS_HYPHEN = '(\d\.)?\d{3}\.\d{3}-\d';
-    const HYPHEN = '\d{6,7}-\d';
-    const NUMBERS = '\d{7,8}';
+    const DOTS_HYPHEN = '(\d\.)?\d{1,3}\.\d{3}-\d';
+    const HYPHEN = '\d{5,7}-\d';
+    const NUMBERS = '\d{5,8}';
 
-    public static function validate($ci, $format = null)
+    public static function validate(string $ci, string $format = null) : bool
     {
         if (!$format) {
             $format = '(' . self::DOTS_HYPHEN . ')|(' . self::HYPHEN . ')|(' . self::NUMBERS . ')';
@@ -22,7 +22,7 @@ class Ci
         if (strlen($numbers) > 8) {
             return false;
         }
-        $numbers = strlen($numbers) == 7 ? "0$numbers" : $numbers;
+        $numbers = str_pad($numbers, 8, '0', STR_PAD_LEFT);
 
         $split = str_split($numbers);
         $coeffs = [2, 9, 8, 7, 6, 3, 4, 1];
