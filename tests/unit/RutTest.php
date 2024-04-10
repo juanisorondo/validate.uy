@@ -25,6 +25,7 @@ class RutTest extends Unit
             [000000000000, false],
             [123456789125, false],
             [698758785878, false],
+            [210407620010, false], //digito verificador es 10
         ];
     }
 }

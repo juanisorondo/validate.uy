@@ -17,10 +17,11 @@ class Rut
             return false;
         }
 
-        $digitos3Al8SonCeros = substr($rut, 2, 6) === '000000';
-        $digitos9Al10SonCeros = substr($rut, 8, 2) === '00';
+        if (substr($rut, 2, 6) == 0) {
+            return false;
+        }
 
-        if ($digitos3Al8SonCeros || !$digitos9Al10SonCeros) {
+        if (substr($rut, 8, 2) == 0) {
             return false;
         }
 
@@ -35,8 +36,10 @@ class Rut
         $digito_verificador = 11 - $tmp % 11;
         if ($digito_verificador == 11) {
             $digito_verificador = 0;
+        } elseif ($digito_verificador == 10) {
+            return false;
         }
-        
+
         return $rut[11] == $digito_verificador;
     }
 }
