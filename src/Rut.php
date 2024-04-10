@@ -11,6 +11,19 @@ class Rut
         }
         $rut = strval($rut);
 
+        $primerosDosDigitos = intval(substr($rut, 0, 2));
+        if ($primerosDosDigitos < 1 || $primerosDosDigitos > 21) {
+            return false;
+        }
+
+        if (substr($rut, 7, 2) !== '00') {
+            return false;
+        }
+
+        if (substr($rut, 2, 6) === '000000') {
+            return false;
+        }
+
         $tmp = array_map('intval', str_split($rut));
 
         $tmp = array_map(function ($x, $y) {
