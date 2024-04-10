@@ -16,11 +16,11 @@ class Rut
             return false;
         }
 
-        if (substr($rut, 7, 2) !== '00') {
+        if (substr($rut, 2, 6) === '000000') {
             return false;
         }
-
-        if (substr($rut, 2, 6) === '000000') {
+        
+        if (substr($rut, 7, 2) !== '00') {
             return false;
         }
 
