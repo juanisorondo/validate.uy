@@ -11,6 +11,20 @@ class Rut
         }
         $rut = strval($rut);
 
+        $primerosDosDigitos = intval(substr($rut, 0, 2));
+
+        if ($primerosDosDigitos < 1 || $primerosDosDigitos > 21) {
+            return false;
+        }
+
+        if (substr($rut, 2, 6) == 0) {
+            return false;
+        }
+
+        if (substr($rut, 8, 2) != 0) {
+            return false;
+        }
+
         $tmp = array_map('intval', str_split($rut));
 
         $tmp = array_map(function ($x, $y) {
@@ -23,8 +37,9 @@ class Rut
         if ($digito_verificador == 11) {
             $digito_verificador = 0;
         } elseif ($digito_verificador == 10) {
-            $digito_verificador = 1;
+            return false;
         }
+
         return $rut[11] == $digito_verificador;
     }
 }
