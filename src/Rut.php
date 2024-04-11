@@ -21,7 +21,7 @@ class Rut
             return false;
         }
 
-        if (substr($rut, 8, 2) == 0) {
+        if (substr($rut, 8, 2) != 0) {
             return false;
         }
 
