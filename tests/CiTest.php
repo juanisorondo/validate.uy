@@ -1,9 +1,11 @@
 <?php
 
-use Codeception\Test\Unit;
-use juanisorondo\ValidadorUruguay\Ci;
+namespace tests;
 
-class CiTest extends Unit
+use juanisorondo\ValidadorUruguay\Ci;
+use PHPUnit\Framework\TestCase;
+
+class CiTest extends TestCase
 {
     public function testDotsHyphen()
     {

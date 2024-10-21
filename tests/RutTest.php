@@ -1,19 +1,20 @@
 <?php
 
-use Codeception\Test\Unit;
-use juanisorondo\ValidadorUruguay\Rut;
+namespace tests;
 
-class RutTest extends Unit
+use juanisorondo\ValidadorUruguay\Rut;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
+
+class RutTest extends TestCase
 {
-    /**
-     * @dataProvider ejemplos
-     */
+    #[DataProvider('ejemplos')]
     public function testRuts($rut, $result)
     {
         $this->assertEquals($result, Rut::validate($rut));
     }
 
-    public function ejemplos()
+    public static function ejemplos()
     {
         return [
             ['210475730011', true],
