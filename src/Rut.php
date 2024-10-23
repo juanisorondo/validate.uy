@@ -29,7 +29,7 @@ class Rut
 
         $tmp = array_slice($tmp, 0, 11);
         $verificadores = [4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
-        $tmp = array_map(fn($x, $y) => $x * $y, $tmp, $verificadores);
+        $tmp = array_map(fn ($x, $y) => $x * $y, $tmp, $verificadores);
 
         $tmp = array_sum($tmp);
 
