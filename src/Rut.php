@@ -13,7 +13,7 @@ class Rut
 
         $primerosDosDigitos = intval(substr($rut, 0, 2));
 
-        if ($primerosDosDigitos < 1 || $primerosDosDigitos > 21) {
+        if ($primerosDosDigitos < 1 || $primerosDosDigitos > 22) {
             return false;
         }
 
@@ -27,9 +27,9 @@ class Rut
 
         $tmp = array_map('intval', str_split($rut));
 
-        $tmp = array_map(function ($x, $y) {
-            return $x * $y;
-        }, array_slice($tmp, 0, 11), [4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]);
+        $tmp = array_slice($tmp, 0, 11);
+        $verificadores = [4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+        $tmp = array_map(fn ($x, $y) => $x * $y, $tmp, $verificadores);
 
         $tmp = array_sum($tmp);
 
