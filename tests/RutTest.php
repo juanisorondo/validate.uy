@@ -29,4 +29,10 @@ class RutTest extends TestCase
             [210407620010, false], //digito verificador es 10
         ];
     }
+
+    public function testSimplificado()
+    {
+        $this->assertTrue(Rut::validate('220000010011'));
+        $this->assertFalse(Rut::validate('220000010012'));
+    }
 }
