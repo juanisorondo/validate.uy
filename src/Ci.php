@@ -24,7 +24,7 @@ class Ci
         }
         $numbers = str_pad($numbers, 8, '0', STR_PAD_LEFT);
 
-        if ($numbers === '00000000'){
+        if ($numbers === '00000000') {
             return false;
         }
 
