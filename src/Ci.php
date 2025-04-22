@@ -24,6 +24,10 @@ class Ci
         }
         $numbers = str_pad($numbers, 8, '0', STR_PAD_LEFT);
 
+        if ($numbers === '00000000'){
+            return false;
+        }
+
         $split = str_split($numbers);
         $coeffs = [2, 9, 8, 7, 6, 3, 4, 1];
 
