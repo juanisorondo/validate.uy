@@ -38,6 +38,8 @@ class CiTest extends TestCase
         $this->assertTrue(Ci::validate('7387538', Ci::NUMBERS));
         $this->assertTrue(Ci::validate('07387538', Ci::NUMBERS));
 
+        $this->assertFalse(Ci::validate('000', Ci::NUMBERS));
+        $this->assertFalse(Ci::validate('00000000', Ci::NUMBERS));
         $this->assertFalse(Ci::validate('12121211', Ci::NUMBERS));
         $this->assertFalse(Ci::validate('121212122', Ci::NUMBERS));
         $this->assertFalse(Ci::validate('628053', Ci::DOTS_HYPHEN));

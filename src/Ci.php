@@ -19,7 +19,7 @@ class Ci
         }
 
         $numbers = str_replace(['.', '-'], '', $ci);
-        if (strlen($numbers) > 8) {
+        if (!intval($numbers) || strlen($numbers) > 8) {
             return false;
         }
         $numbers = str_pad($numbers, 8, '0', STR_PAD_LEFT);
