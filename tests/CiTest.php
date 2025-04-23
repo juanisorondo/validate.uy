@@ -33,7 +33,6 @@ class CiTest extends TestCase
 
     public function testNumbers()
     {
-        $this->assertTrue(false);
         $this->assertTrue(Ci::validate('628050', Ci::NUMBERS));
         $this->assertTrue(Ci::validate('12121212', Ci::NUMBERS));
         $this->assertTrue(Ci::validate('7387538', Ci::NUMBERS));
